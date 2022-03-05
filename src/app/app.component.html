@@ -1,5 +1,47 @@
-<div *ngIf="logado">
-  <mat-form-field appearance="fill">
-    <input type="password" matInput (keyup)="verificarSenha($event)" >
-  </mat-form-field>
+<div class="container-fluid bg-dark" *ngIf="logado">
+  <div class="row h-100 d-flex justify-content-center align-items-center">
+    <div class="col-md-6 card">
+      <div class="text-center display-5 my-3">
+        Barbearia
+      </div>
+      <mat-form-field class="w-100" appearance="fill">
+        <mat-label>Digite a senha para acessar o sistema:</mat-label>
+        <input type="password" matInput (keyup)="verificarSenha($event)" >
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="logado">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6 bg-primary">
+      <form [formGroup]="form" >
+        <input type="date" formControlName="data" >
+        <div class="d-flex">
+          <mat-form-field class="flex-fill me-3" appearance="fill">
+            <mat-label>Nome:</mat-label>
+            <input type="text" matInput placeholder="" formControlName="cliente" >
+          </mat-form-field>
+
+          <mat-form-field class="flex-fill" appearance="fill">
+            <mat-label>Contato:</mat-label>
+            <input type="tel" matInput placeholder="" formControlName="contato" >
+          </mat-form-field>
+        </div>
+
+        <div class="text-center">
+          <mat-label class="me-3">Serviço:</mat-label>
+          <mat-radio-group aria-label="Select an option" formControlName="servico">
+            <mat-radio-button class="me-3" value="0">Cabelo</mat-radio-button>
+            <mat-radio-button class="me-3" value="1">Barba</mat-radio-button>
+            <mat-radio-button value="2">Combo</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div>
+          <button mat-raised-button class="w-100 my-3" type="button" >Cadastrar cliente</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
