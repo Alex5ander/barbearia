@@ -25,9 +25,8 @@ export class AppComponent {
   verificarSenha(event: KeyboardEvent) {
     console.log(event.target);
   }
-  
-  enviarDados() {
 
+  enviarDados() {
     this.http.post(this.url, this.form.value).subscribe({
       next: data => console.log(data),
       error: error => console.error(error.error)
