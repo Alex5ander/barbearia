@@ -12,11 +12,11 @@
   </div>
 </div>
 
-<div class="container-fluid" *ngIf="logado">
+<div class="container-fluid" *ngIf="!logado">
   <div class="row d-flex justify-content-center">
-    <div class="col-md-6 bg-primary">
-      <form [formGroup]="form" >
-        <input type="date" formControlName="data" >
+    <div class="col-md-6 bg-secondary">
+      <form [formGroup]="form" (ngSubmit)="enviarDados()" >
+        <input type="hidden" formControlName="data" >
         <div class="d-flex">
           <mat-form-field class="flex-fill me-3" appearance="fill">
             <mat-label>Nome:</mat-label>
@@ -39,7 +39,7 @@
         </div>
 
         <div>
-          <button mat-raised-button class="w-100 my-3" type="button" >Cadastrar cliente</button>
+          <button mat-raised-button class="w-100 my-3" type="submit" >Cadastrar cliente</button>
         </div>
       </form>
     </div>

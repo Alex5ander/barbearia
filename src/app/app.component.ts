@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -8,12 +9,13 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class AppComponent {
   title = 'barbearia';
-  logado: boolean = true;
+  logado: boolean = false;
   form: FormGroup;
+  url: string = "http://www.lucasreno.kinghost.net/barbearia";
 
-  constructor (public fb: FormBuilder) {
+  constructor (public fb: FormBuilder, public http: HttpClient) {
     this.form = this.fb.group({
-      data: [''],
+      data: [new Date().toLocaleDateString()],
       cliente: [''],
       contato: [''],
       servico: ['']
@@ -22,5 +24,13 @@ export class AppComponent {
 
   verificarSenha(event: KeyboardEvent) {
     console.log(event.target);
-  }  
+  }
+  
+  enviarDados() {
+
+    this.http.post(this.url, this.form.value).subscribe({
+      next: data => console.log(data),
+      error: error => console.error(error.error)
+    });
+  }
 }
