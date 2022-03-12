@@ -9,6 +9,12 @@ interface Cliente {
   contato: string
 }
 
+enum Servico {
+  'Cabelo',
+  'Barba',
+  'Combo'
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,6 +26,7 @@ export class AppComponent {
   form: FormGroup;
   url: string = 'http://www.lucasreno.kinghost.net/barbearia';
   fila: Cliente[] = [];
+  servicos: typeof Servico = Servico;
 
   constructor (public fb: FormBuilder, public http: HttpClient) {
     this.form = this.fb.group({

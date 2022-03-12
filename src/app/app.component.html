@@ -62,7 +62,7 @@
             <td>{{ i + 1 }}</td>
             <td>{{ cliente.cliente }}</td>
             <td>{{ cliente.contato }}</td>
-            <td>{{ cliente.servico }}</td>
+            <td>{{ servicos[cliente.servico] }}</td>
             <td>
               <button mat-raised-button color="primary" (click)="removerDaFila(cliente.id)" >Finalizar</button>
             </td>
