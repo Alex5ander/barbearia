@@ -2,6 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
+interface Cliente {
+  id: number,
+  servico: number,
+  cliente: string,
+  contato: string
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +18,8 @@ export class AppComponent {
   title = 'barbearia';
   logado: boolean = false;
   form: FormGroup;
-  url: string = "http://www.lucasreno.kinghost.net/barbearia";
+  url: string = 'http://www.lucasreno.kinghost.net/barbearia';
+  fila: Cliente[] = [];
 
   constructor (public fb: FormBuilder, public http: HttpClient) {
     this.form = this.fb.group({
@@ -20,10 +28,13 @@ export class AppComponent {
       contato: [''],
       servico: ['']
     });
+    this.pegarDados();
   }
 
-  verificarSenha(event: KeyboardEvent) {
-    console.log(event.target);
+  verificarSenha(event: any) {
+    if(event.target.value === "123") {
+      this.logado = true;
+    }
   }
 
   enviarDados() {
@@ -31,5 +42,23 @@ export class AppComponent {
       next: data => console.log(data),
       error: error => console.error(error.error)
     });
+  }
+
+  pegarDados() {
+    this.http.get<Cliente[]>(this.url).subscribe({
+      next: (resposta: Cliente[]) => {
+        this.fila = resposta;
+      },
+      error: erro => console.error(erro)
+    });
+  }
+
+  removerDaFila(id: number) {
+    this.http.patch(this.url, {id}).subscribe({
+      next: resposta => {
+        this.pegarDados()
+      },
+      error: erro => {},
+    })
   }
 }

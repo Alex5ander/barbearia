@@ -1,4 +1,4 @@
-<div class="container-fluid bg-dark" *ngIf="logado">
+<div class="container-fluid" *ngIf="!logado">
   <div class="row h-100 d-flex justify-content-center align-items-center">
     <div class="col-md-6 card">
       <div class="text-center display-5 my-3">
@@ -12,9 +12,9 @@
   </div>
 </div>
 
-<div class="container-fluid" *ngIf="!logado">
+<div class="container-fluid" *ngIf="logado">
   <div class="row d-flex justify-content-center">
-    <div class="col-md-6 bg-secondary">
+    <div class="col-md-6 bg-success">
       <form [formGroup]="form" (ngSubmit)="enviarDados()" >
         <input type="hidden" formControlName="data" >
         <div class="d-flex">
@@ -42,6 +42,33 @@
           <button mat-raised-button class="w-100 my-3" type="submit" >Cadastrar cliente</button>
         </div>
       </form>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <table>
+        <thead>
+          <tr>
+            <td># Fila</td>
+            <td>Cliente</td>
+            <td>Contato</td>
+            <td>Serviço</td>
+            <td>Finalizar</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of fila; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ cliente.cliente }}</td>
+            <td>{{ cliente.contato }}</td>
+            <td>{{ cliente.servico }}</td>
+            <td>
+              <button mat-raised-button color="primary" (click)="removerDaFila(cliente.id)" >Finalizar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
