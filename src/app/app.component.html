@@ -39,7 +39,7 @@
         </div>
 
         <div>
-          <button mat-raised-button class="w-100 my-3" type="submit" >Cadastrar cliente</button>
+          <button mat-raised-button class="w-100 my-3" type="submit" [disabled]="!form.valid" >Cadastrar cliente na fila</button>
         </div>
       </form>
     </div>
