@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Cliente {
@@ -32,11 +32,10 @@ export class AppComponent {
   constructor (public fb: FormBuilder, public http: HttpClient, public snackbar: MatSnackBar) {
     this.form = this.fb.group({
       data: [new Date().toLocaleDateString()],
-      cliente: [''],
-      contato: [''],
-      servico: ['']
+      cliente: ['', Validators.required],
+      contato: ['', Validators.required],
+      servico: ['', Validators.required]
     });
-    this.pegarDados();
   }
 
   ngOnInit() {
