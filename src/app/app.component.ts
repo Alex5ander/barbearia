@@ -40,7 +40,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    
+    setInterval(() => this.pegarDados(), 1000);
   }
 
   verificarSenha(event: any) {
