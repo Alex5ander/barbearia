@@ -56,6 +56,7 @@ export class AppComponent {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           duration: 3000,
+          panelClass:'green-snackbar'
         });
         this.pegarDados();
         this.form.reset();
@@ -65,6 +66,7 @@ export class AppComponent {
           horizontalPosition: 'right',
           verticalPosition: 'top',
           duration: 3000,
+          panelClass:'red-snackbar'
         });
       }
     });
