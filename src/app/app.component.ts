@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Cliente {
   id: number,
@@ -28,7 +29,7 @@ export class AppComponent {
   fila: Cliente[] = [];
   servicos: typeof Servico = Servico;
 
-  constructor (public fb: FormBuilder, public http: HttpClient) {
+  constructor (public fb: FormBuilder, public http: HttpClient, public snackbar: MatSnackBar) {
     this.form = this.fb.group({
       data: [new Date().toLocaleDateString()],
       cliente: [''],
@@ -36,6 +37,10 @@ export class AppComponent {
       servico: ['']
     });
     this.pegarDados();
+  }
+
+  ngOnInit() {
+    
   }
 
   verificarSenha(event: any) {
@@ -46,8 +51,22 @@ export class AppComponent {
 
   enviarDados() {
     this.http.post(this.url, this.form.value).subscribe({
-      next: data => console.log(data),
-      error: error => console.error(error.error)
+      next: data => {
+        this.snackbar.open(data.toString(),'', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 3000,
+        });
+        this.pegarDados();
+        this.form.reset();
+      },
+      error: error => {
+        this.snackbar.open(error.error,'', {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 3000,
+        });
+      }
     });
   }
 
