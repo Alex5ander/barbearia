@@ -61,7 +61,7 @@
           <tr *ngFor="let cliente of fila; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ cliente.cliente }}</td>
-            <td>{{ cliente.contato }}</td>
+            <td>{{ cliente.contato | mask: '(00) 00000-0000' }}</td>
             <td>{{ servicos[cliente.servico] }}</td>
             <td>
               <button mat-raised-button color="primary" (click)="removerDaFila(cliente.id)" >Finalizar</button>
