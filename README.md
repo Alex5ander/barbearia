@@ -20,13 +20,28 @@
 - CSS3
 - Typescript
 
-## Instalação 
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+git clone https://github.com/Alex5ander/cantina.git
 ```
+
+Entre no diretório do projeto
+
+```bash
+cd cantina
+```
+
+Instale as dependências
+
+```bash
 yarn 
 ```
 
-## Executar
+Inicie o servidor
 
-```
+```bash
 yarn ng serve -o
 ```
