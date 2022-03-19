@@ -25,13 +25,13 @@
 Clone o projeto
 
 ```bash
-git clone https://github.com/Alex5ander/cantina.git
+git clone https://github.com/Alex5ander/barbearia.git
 ```
 
 Entre no diretório do projeto
 
 ```bash
-cd cantina
+cd barbearia
 ```
 
 Instale as dependências
