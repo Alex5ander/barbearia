@@ -1,4 +1,4 @@
-# Babearia
+# Barbearia
 
 ## Autor
 
